@@ -1,0 +1,40 @@
+package yahyeet;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author S331471193
+ * Purpose is to take names from a class list
+ * and put them into a workable form in java
+ * as an enumerated list. Final product is
+ * who showed up to class on any given day.
+ */
+public class YahYEET {
+    enum classList{
+        SAM,
+        ARUP,
+        ASHWIN,
+        FRED,
+        ANDY,
+        KESHAV,
+        ERIC,
+        STEVEN,
+    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws IOException{
+        Scanner sc = new Scanner(new File("src/yahyeet/attendance.txt"));
+        ArrayList<classList> list = new ArrayList<classList>();
+        String name;
+        while (sc.hasNext()) {
+            // find next line
+            name = sc.next();
+            list.add(classList.valueOf(name));
+            }
+    }
+}
