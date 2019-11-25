@@ -1,0 +1,102 @@
+package yahyeet;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author S331471193
+ */
+public class YahYEET {
+    enum classList{
+        SAM,
+        ARUP,
+        ASHWIN,
+        FRED,
+        ANDY,
+        KESHAV,
+        ERIC,
+        STEVEN,
+    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws IOException{
+        Scanner sc = new Scanner(new File("src/yahyeet/attendance.txt"));
+        ArrayList<classList> list = new ArrayList<classList>();
+        String name;
+        while (sc.hasNext()) {
+            // find next line
+            name = sc.next();
+            list.add(classList.valueOf(name));
+            }
+        takeAttendance(list);
+        searchMissing(list);
+        
+    }
+    
+    public static void takeAttendance(ArrayList<classList> list){
+        int length = list.size();
+        for (int i=0;i<length;i++){
+            switch (list.get(i)){
+                case SAM:
+                    System.out.println("Sam is here.");
+                    break;
+                case ASHWIN:
+                    System.out.println("Ashwin is here.");
+                    break;
+                case ARUP:
+                    System.out.println("Arup is here.");
+                    break;
+                case FRED:
+                    System.out.println("Fred is here.");
+                    break;
+                case ANDY:
+                    System.out.println("Andy is here.");
+                    break;
+                case KESHAV:
+                    System.out.println("Keshav is here.");
+                    break;
+                case ERIC:
+                    System.out.println("Eric is here.");
+                    break;
+                case STEVEN:
+                    System.out.println("Steven is here.");
+                    break;
+            }
+        }
+    }
+    public static void searchMissing(ArrayList<classList> list){
+        ArrayList<classList> temp = new ArrayList<classList>();
+        int length = list.size();
+        for (classList i:classList.values()){
+            temp.add(i);
+        }
+        //System.out.println(temp);
+        for (int i=0;i<length;i++){
+            //System.out.println(list);
+            for (int j=0;j<8;j++){
+                //System.out.printf("%d %d \n", i,j);
+                if (list.get(i) == temp.get(j)){
+                    temp.remove(j);
+                    //length--;
+                    break;
+                }
+               
+            }
+            length = list.size();
+        }
+        if (temp.size() == 0){
+            System.out.println("Everyone is here.");
+        }
+        else if (temp.size() == 1){
+            System.out.printf(temp+" is missing. \n");
+        }
+        else {
+            System.out.printf(temp+" are missing. \n");
+        }
+    }
+}
+
