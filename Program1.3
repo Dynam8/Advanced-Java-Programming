@@ -1,0 +1,58 @@
+package yahyeet;
+
+
+/**
+ *
+ * @author S331471193
+ */
+public class YahYEET {
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args){
+        int[] tests = new int[]{77,56,99,78,67,97,58,78,84,89};
+        quickSort(tests,0,tests.length-1);
+        //System.out.println(tests[tests.length-1]);
+        System.out.printf("The average was "+avg(tests,0,0)+" and the highest mark was "+tests[tests.length-1]+", lowest mark was "+tests[0]);
+    }
+    public static int avg(int[] tests,int start,int tot){
+        int size = tests.length;
+        if (start == size){
+            return tot/size;
+        }
+        else {
+            tot += tests[start];
+            return avg(tests,start+1,tot);
+        }
+    }
+    public static void quickSort(int[] arr, int start, int end){
+ 
+        int partition = partition(arr, start, end);
+ 
+        if(partition-1>start) {
+            quickSort(arr, start, partition - 1);
+        }
+        if(partition+1<end) {
+            quickSort(arr, partition + 1, end);
+        }
+    }public static int partition(int[] arr, int start, int end){
+        int pivot = arr[end];
+ 
+        for(int i=start; i<end; i++){
+            if(arr[i]<pivot){
+                int temp= arr[start];
+                arr[start]=arr[i];
+                arr[i]=temp;
+                start++;
+            }
+        }
+ 
+        int temp = arr[start];
+        arr[start] = pivot;
+        arr[end] = temp;
+ 
+        return start;
+    }
+}
+
