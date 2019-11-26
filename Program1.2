@@ -1,0 +1,67 @@
+package yahyeet;
+
+import java.util.InputMismatchException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author S331471193
+ */
+public class YahYEET {
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args){
+        int answer = 5;
+        Scanner sc = new Scanner(System.in);
+        int[] numbers = new int[11];
+        numbers[0] = 0;
+        for (int i=1;i<11;i++){
+            numbers[i]= factorial(i);
+        }
+        int guess = getGuess(numbers[answer],sc);
+        checkGuess(guess,numbers,answer);
+        
+        
+    }
+    public static int factorial(int n){
+        if (n<=1) {
+            return 1;
+        }
+        else{
+        return n*(factorial(n-1));
+        }
+    }
+   
+    public static int getGuess(int n, Scanner sc){
+        int guess;
+        System.out.printf("What factorial do you think produces this number: "+n+"\n");
+        while(true){
+            try{
+                guess = sc.nextInt();
+                break;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Enter an integer guess between 1-10");
+                sc.next();
+            }
+        }
+        return guess;
+    }
+    public static void checkGuess(int g, int[] nums, int answer){
+        int guessAnswer = -1;
+        for (int i=0;i<11;i++){
+            if (factorial(g) == nums[i]){
+                guessAnswer = i;
+                
+            }
+            if (guessAnswer >=0){
+                break;
+            }
+        }
+        System.out.printf("The correct answer was "+answer+" and you guessed "+g+" factorial, which is "+factorial(g));
+    }
+}
+
